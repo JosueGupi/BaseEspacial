@@ -1,6 +1,20 @@
 USE [Atlas]
 GO
-/****** Object:  Table [dbo].[Calles]    Script Date: 20/4/2022 20:19:30 ******/
+/****** Object:  Table [dbo].[Bloques]    Script Date: 21/4/2022 17:26:46 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Bloques](
+	[IdBloque] [int] IDENTITY(1,1) NOT NULL,
+	[Bloque] [varchar](16) NOT NULL,
+ CONSTRAINT [PK_Bloques] PRIMARY KEY CLUSTERED 
+(
+	[IdBloque] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Calles]    Script Date: 21/4/2022 17:26:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -15,14 +29,15 @@ CREATE TABLE [dbo].[Calles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CasasA]    Script Date: 20/4/2022 20:19:30 ******/
+/****** Object:  Table [dbo].[Casas]    Script Date: 21/4/2022 17:26:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[CasasA](
+CREATE TABLE [dbo].[Casas](
 	[IdCasa] [int] IDENTITY(1,1) NOT NULL,
-	[Bloque] [varchar](1) NOT NULL,
+	[IdBloque] [int] NOT NULL,
+	[NumeroCasa] [varchar](8) NOT NULL,
 	[Dimensiones] [geometry] NOT NULL,
 	[CantPersonas] [int] NOT NULL,
  CONSTRAINT [PK_CasasA] PRIMARY KEY CLUSTERED 
@@ -31,39 +46,23 @@ CREATE TABLE [dbo].[CasasA](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CasasB]    Script Date: 20/4/2022 20:19:30 ******/
+/****** Object:  Table [dbo].[Errores]    Script Date: 21/4/2022 17:26:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[CasasB](
-	[IdCasa] [int] IDENTITY(1,1) NOT NULL,
-	[Bloque] [varchar](1) NOT NULL,
-	[Dimensiones] [geometry] NOT NULL,
-	[CantPersonas] [int] NOT NULL,
- CONSTRAINT [PK_CasasB] PRIMARY KEY CLUSTERED 
-(
-	[IdCasa] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+CREATE TABLE [dbo].[Errores](
+	[Name] [varchar](max) NOT NULL,
+	[Numero] [int] NOT NULL,
+	[Estado] [int] NOT NULL,
+	[Severidad] [int] NOT NULL,
+	[Linea] [int] NOT NULL,
+	[Procedimientos] [varchar](max) NOT NULL,
+	[Mensaje] [varchar](max) NOT NULL,
+	[Fecha] [date] NOT NULL
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CasasC]    Script Date: 20/4/2022 20:19:30 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[CasasC](
-	[IdCasa] [int] IDENTITY(1,1) NOT NULL,
-	[Bloque] [varchar](1) NOT NULL,
-	[Dimensiones] [geometry] NOT NULL,
-	[CantPersonas] [int] NOT NULL,
- CONSTRAINT [PK_CasasC] PRIMARY KEY CLUSTERED 
-(
-	[IdCasa] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[Productos]    Script Date: 20/4/2022 20:19:30 ******/
+/****** Object:  Table [dbo].[Productos]    Script Date: 21/4/2022 17:26:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -79,7 +78,7 @@ CREATE TABLE [dbo].[Productos](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ProductosxTienda]    Script Date: 20/4/2022 20:19:30 ******/
+/****** Object:  Table [dbo].[ProductosxTienda]    Script Date: 21/4/2022 17:26:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -96,61 +95,26 @@ CREATE TABLE [dbo].[ProductosxTienda](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[TiendasA]    Script Date: 20/4/2022 20:19:30 ******/
+/****** Object:  Table [dbo].[Tiendas]    Script Date: 21/4/2022 17:26:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[TiendasA](
+CREATE TABLE [dbo].[Tiendas](
 	[IdTienda] [int] IDENTITY(1,1) NOT NULL,
 	[IdTipoTienda] [int] NOT NULL,
-	[Bloque] [varchar](1) NOT NULL,
+	[IdBloque] [int] NOT NULL,
+	[NumeroTienda] [varchar](8) NOT NULL,
 	[Dimensiones] [geometry] NOT NULL,
 	[HoraInicio] [time](0) NOT NULL,
 	[HoraFin] [time](0) NOT NULL,
- CONSTRAINT [PK_TiendasaA] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_Tiendas] PRIMARY KEY CLUSTERED 
 (
 	[IdTienda] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[TiendasB]    Script Date: 20/4/2022 20:19:30 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[TiendasB](
-	[IdTienda] [int] IDENTITY(1,1) NOT NULL,
-	[IdTipoTienda] [int] NOT NULL,
-	[Bloque] [varchar](1) NOT NULL,
-	[Dimensiones] [geometry] NOT NULL,
-	[HoraInicio] [time](0) NOT NULL,
-	[HoraFin] [time](0) NOT NULL,
- CONSTRAINT [PK_TiendasB] PRIMARY KEY CLUSTERED 
-(
-	[IdTienda] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[TiendasC]    Script Date: 20/4/2022 20:19:30 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[TiendasC](
-	[IdTienda] [int] IDENTITY(1,1) NOT NULL,
-	[IdTipoTienda] [int] NOT NULL,
-	[Bloque] [varchar](1) NOT NULL,
-	[Dimensiones] [geometry] NOT NULL,
-	[HoraInicio] [time](0) NOT NULL,
-	[HoraFin] [time](0) NOT NULL,
- CONSTRAINT [PK_TiendasC] PRIMARY KEY CLUSTERED 
-(
-	[IdTienda] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[TipoProducto]    Script Date: 20/4/2022 20:19:30 ******/
+/****** Object:  Table [dbo].[TipoProducto]    Script Date: 21/4/2022 17:26:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -164,7 +128,7 @@ CREATE TABLE [dbo].[TipoProducto](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[TipoTienda]    Script Date: 20/4/2022 20:19:30 ******/
+/****** Object:  Table [dbo].[TipoTienda]    Script Date: 21/4/2022 17:26:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -178,6 +142,11 @@ CREATE TABLE [dbo].[TipoTienda](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+ALTER TABLE [dbo].[Casas]  WITH CHECK ADD  CONSTRAINT [FK_Casas_Bloques] FOREIGN KEY([IdBloque])
+REFERENCES [dbo].[Bloques] ([IdBloque])
+GO
+ALTER TABLE [dbo].[Casas] CHECK CONSTRAINT [FK_Casas_Bloques]
+GO
 ALTER TABLE [dbo].[Productos]  WITH CHECK ADD  CONSTRAINT [FK_Productos_TipoProducto] FOREIGN KEY([IdTipoProducto])
 REFERENCES [dbo].[TipoProducto] ([IdTipoProducto])
 GO
@@ -188,18 +157,18 @@ REFERENCES [dbo].[Productos] ([IdProducto])
 GO
 ALTER TABLE [dbo].[ProductosxTienda] CHECK CONSTRAINT [FK_ProductosxTienda_Productos]
 GO
-ALTER TABLE [dbo].[TiendasA]  WITH CHECK ADD  CONSTRAINT [FK_TiendasA_TipoTienda] FOREIGN KEY([IdTipoTienda])
+ALTER TABLE [dbo].[ProductosxTienda]  WITH CHECK ADD  CONSTRAINT [FK_ProductosxTienda_Tiendas] FOREIGN KEY([IdTienda])
+REFERENCES [dbo].[Tiendas] ([IdTienda])
+GO
+ALTER TABLE [dbo].[ProductosxTienda] CHECK CONSTRAINT [FK_ProductosxTienda_Tiendas]
+GO
+ALTER TABLE [dbo].[Tiendas]  WITH CHECK ADD  CONSTRAINT [FK_Tiendas_Bloques] FOREIGN KEY([IdBloque])
+REFERENCES [dbo].[Bloques] ([IdBloque])
+GO
+ALTER TABLE [dbo].[Tiendas] CHECK CONSTRAINT [FK_Tiendas_Bloques]
+GO
+ALTER TABLE [dbo].[Tiendas]  WITH CHECK ADD  CONSTRAINT [FK_Tiendas_TipoTienda] FOREIGN KEY([IdTipoTienda])
 REFERENCES [dbo].[TipoTienda] ([IdTipoTienda])
 GO
-ALTER TABLE [dbo].[TiendasA] CHECK CONSTRAINT [FK_TiendasA_TipoTienda]
-GO
-ALTER TABLE [dbo].[TiendasB]  WITH CHECK ADD  CONSTRAINT [FK_TiendasB_TipoTienda] FOREIGN KEY([IdTipoTienda])
-REFERENCES [dbo].[TipoTienda] ([IdTipoTienda])
-GO
-ALTER TABLE [dbo].[TiendasB] CHECK CONSTRAINT [FK_TiendasB_TipoTienda]
-GO
-ALTER TABLE [dbo].[TiendasC]  WITH CHECK ADD  CONSTRAINT [FK_TiendasC_TipoTienda] FOREIGN KEY([IdTipoTienda])
-REFERENCES [dbo].[TipoTienda] ([IdTipoTienda])
-GO
-ALTER TABLE [dbo].[TiendasC] CHECK CONSTRAINT [FK_TiendasC_TipoTienda]
+ALTER TABLE [dbo].[Tiendas] CHECK CONSTRAINT [FK_Tiendas_TipoTienda]
 GO
