@@ -4,9 +4,9 @@ INSERT [dbo].[Bloques] ([Bloque]) VALUES ('A'),('B'),('C'),('AT'),('BT'),('CT')
 INSERT [dbo].[TipoTienda]([Nombre]) VALUES('Prueba')
 
 INSERT [dbo].[Casas] ( [IdBloque], [NumeroCasa], [Dimensiones], [CantPersonas]) VALUES 
-( 2, 'B-13','POLYGON ((5 2, 6 2, 6 3, 5 3, 5 2))', 5)
-,( 2, 'B-14','POLYGON ((5 3, 6 3, 6 4, 5 4, 5 3))', 3)
-,( 2, 'B-15','POLYGON ((5 4, 6 4, 6 5, 5 5, 5 4))', 10) 
+( 2, 'B-13','POLYGON ((5 2, 6 2, 6 3, 5 3, 5 2))',5)
+,(2, 'B-14','POLYGON ((5 3, 6 3, 6 4, 5 4, 5 3))',3)
+,(2, 'B-15','POLYGON ((5 4, 6 4, 6 5, 5 5, 5 4))',10) 
 ,(2, 'B-16','POLYGON((5 5, 6 5, 6 6, 5 6, 5 5))',3)
 ,(2, 'B-17','POLYGON((7 1, 8 1, 8 2, 7 2, 7 1))',9)
 ,(2, 'B-18','POLYGON((7 2, 8 2, 8 3, 7 3, 7 2))',7)
@@ -65,4 +65,7 @@ INSERT INTO @T(
 	FROM Calles
 
 	SELECT * FROM @T
+
+EXEC SP_LugaresProducto 'B-13','Pastilla'
 EXEC SP_BorrarTablas
+
