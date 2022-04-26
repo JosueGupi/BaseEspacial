@@ -29,6 +29,5 @@ INSERT [dbo].[Calles] ( [Nombre], [Dimensiones]) VALUES
 ,('Ruiz','LINESTRING(0.5 1.5, 0.5 6.5)')
 ,('Ayala','LINESTRING(2.5 6.5, 2.5 1.5)')
 ,('Cruz','LINESTRING(4.5 6.5, 4.5 1.5)')
-,('Dos hermanas','LINESTRING(8.5 1.5, 8.5 7.5)')
-
+,('Dos hermanas','LINESTRING(0.5 1.5, 6.5 1.5)')
 
