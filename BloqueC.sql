@@ -1,11 +1,21 @@
 -- Bloque C
-SELECT * FROM Tiendas 
+/*
+INSERT INTO TipoTienda VALUES ('Farmacia')
+INSERT INTO TipoTienda VALUES ('Supermercado')
+INSERT INTO TipoTienda VALUES ('Ferretería')
+INSERT INTO TipoTienda VALUES ('Panadería')
 
-INSERT INTO Tiendas ()
-VALUES (1,1,48,geometry::STGeomFromText('POLYGON((12 2, 12 3 , 14 3 , 14 2, 12 2))', 0)),
-	   (1,2,49,geometry::STGeomFromText('POLYGON((10 3, 10 4 , 12 4 , 12 3, 10 3))', 0))
+INSERT INTO Bloques VALUES('A')
+INSERT INTO Bloques VALUES('B')
+INSERT INTO Bloques VALUES('C')
 
-INSERT INTO Calles 
+*/
+
+INSERT INTO Tiendas (IdTipoTienda, IdBloque, NumeroTienda, Dimensiones, HoraInicio, HoraFin)
+VALUES (1,3,48,geometry::STGeomFromText('POLYGON((12 2, 12 3 , 14 3 , 14 2, 12 2))', 0),'7:00','20:00'),
+	   (2,3,49,geometry::STGeomFromText('POLYGON((10 3, 10 4 , 12 4 , 12 3, 10 3))', 0),'7:00','22:00')
+
+INSERT INTO Calles (Nombre, Dimensiones)
 VALUES ('Calle C-8',geometry::STGeomFromText('LINESTRING(7.5 1.5, 14.5 1.5)', 0)),
 	   ('Calle C-9',geometry::STGeomFromText('LINESTRING(14.5 1.5, 14.5 6.5)', 0)),
 	   ('Calle C-10',geometry::STGeomFromText('LINESTRING(10.5 4.5, 14.5 4.5)', 0)),
@@ -32,9 +42,9 @@ VALUES (3,33,geometry::STGeomFromText('POLYGON((10 0 , 10 1 , 11 1 , 11 0, 10 0)
        (3,47,geometry::STGeomFromText('POLYGON((14 7 , 14 8 , 15 8, 15 7, 14 7))',0),5)
 
 /*
-SELECT IdTienda, NumeroTienda, Dimensiones FROM Tiendas
+SELECT NumeroCasa AS Nombre, Dimensiones FROM Casas
 UNION ALL
-SELECT IdCasa, NumeroCasa, Dimensiones FROM Casas
+SELECT NumeroTienda AS Nombre, Dimensiones FROM Tiendas
 UNION ALL
-SELECT IdCalle, Nombre, Dimensiones FROM Calles
+SELECT Nombre AS Nombre, Dimensiones FROM Calles
 */
