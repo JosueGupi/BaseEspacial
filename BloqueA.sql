@@ -19,8 +19,8 @@ INSERT [dbo].[Casas] ( [IdBloque], [NumeroCasa], [Dimensiones], [CantPersonas]) 
 
 INSERT [dbo].[Tiendas] ( [IdTipoTienda],[IdBloque], [NumeroTienda], [Dimensiones], [HoraInicio], [HoraFin]) VALUES
 (1,4,'AT-1','POLYGON((3 2, 4 2, 4 4, 3 4, 3 2))','8:30:54','9:30:54')
-,(1,4,'AT-2','POLYGON((3 4, 4 4, 4 6, 3 6, 3 4))','9:30:54','10:30:54')
-,(1,4,'AT-3','POLYGON((3 8, 5 8, 5 7, 3 7, 3 8))','10:30:54','11:30:54')
+,(2,4,'AT-2','POLYGON((3 4, 4 4, 4 6, 3 6, 3 4))','9:30:54','10:30:54')
+,(3,4,'AT-3','POLYGON((3 8, 5 8, 5 7, 3 7, 3 8))','10:30:54','11:30:54')
 
 
 
