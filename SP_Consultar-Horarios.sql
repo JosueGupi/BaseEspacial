@@ -5,14 +5,14 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE PROC [dbo].[SP_ConsultarHorarios]
-	@id INT
+	@idTipo INT
 AS
 BEGIN
 	SET NOCOUNT ON
 	
 	BEGIN TRY
 
-	SELECT HoraInicio,HoraFin FROM dbo.Tiendas WHERE IdTienda = @id;
+	SELECT HoraInicio,HoraFin FROM dbo.Tiendas WHERE IdTipoTienda = @idTipo;
 
 	END TRY
 	BEGIN CATCH

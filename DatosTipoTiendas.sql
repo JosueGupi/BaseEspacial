@@ -1,8 +1,8 @@
 INSERT [dbo].[TipoTienda] ([IdTipoTienda],[Nombre]) VALUES
-('1','Farmacia')
-,('2','Abastecedor')
-,('3','Tienda Ropa')
-,('4','Zapateria')
+('Farmacia')
+,('Abastecedor')
+,('Tienda Ropa')
+,('Zapateria')
 
 UPDATE Tiendas
 SET HoraInicio = '7:0:00', HoraFin = '22:30:00'
